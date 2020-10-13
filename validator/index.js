@@ -1,0 +1,1 @@
+module.exports.authorValidator = require('./author.validator')

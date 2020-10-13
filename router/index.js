@@ -1,0 +1,1 @@
+module.exports.AuthorRouter = require('./author/authorRouter');
