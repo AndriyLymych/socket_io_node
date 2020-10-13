@@ -1,0 +1,25 @@
+{
+  "name": "socket_io_node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "joi": "^17.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "sequelize": "^6.3.5",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.8",
+    "@types/joi": "^14.3.4",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/sequelize": "^4.28.9",
+    "@types/cors": "^2.8.8"
+  }
+}
