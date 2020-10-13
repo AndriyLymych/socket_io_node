@@ -5,7 +5,7 @@ const cors = require('cors');
 const {STATUS_CODE: {SERVER_ERROR}} = require('./constant');
 const {PORT} = require('./config');
 require('./dataBase').getInstance().setModels();
-const {AuthorRouter} = require('./router');
+const {AuthorRouter,AuthRouter} = require('./router');
 
 const app = express();
 
@@ -14,6 +14,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(cors());
 
 app.use('/authors', AuthorRouter);
+app.use('/auth', AuthRouter);
 
 
 app.use((err, req, res, next) => {

@@ -1,0 +1,1 @@
+module.exports.authAuthor = require('./authAuthor');

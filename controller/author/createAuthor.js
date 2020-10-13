@@ -29,6 +29,7 @@ module.exports = async (req, res, next) => {
                 userAlreadyPresentCode
             )
         }
+
         const {error} = Joi.validate(author, authorValidator);
 
         if (error) {
@@ -38,7 +39,7 @@ module.exports = async (req, res, next) => {
             )
         }
 
-        await passwordHasher(password);
+        author.password = await passwordHasher(password);
         await authorService.createAuthor(author);
 
         res.status(CREATED).end()

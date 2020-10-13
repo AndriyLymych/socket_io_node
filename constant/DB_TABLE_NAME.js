@@ -1,5 +1,6 @@
 module.exports = {
     AUTHOR: 'Author',
     CHAT:'Chat',
-    MESSAGE:'Message'
+    MESSAGE:'Message',
+    OAUTH_TOKEN:'OauthToken'
 }
