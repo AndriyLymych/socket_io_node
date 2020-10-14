@@ -7,9 +7,10 @@ module.exports = (sequelize, DataTypes) => {
                 primaryKey: true,
                 autoIncrement: true
             },
-            chat: {
+            chat_name: {
                 type: DataTypes.STRING,
                 allowNull: false,
+                unique:true,
                 required: true
             }
         },

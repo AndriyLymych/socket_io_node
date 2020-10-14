@@ -40,6 +40,7 @@ module.exports = async (req, res, next) => {
         }
 
         author.password = await passwordHasher(password);
+
         await authorService.createAuthor(author);
 
         res.status(CREATED).end()

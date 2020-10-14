@@ -1,0 +1,1 @@
+module.exports.getUserFromToken = require('./getUserFromToken.service');

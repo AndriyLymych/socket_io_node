@@ -1,10 +1,9 @@
-const {tokenChecker} = require('../helpers');
-const {CustomError, CustomErrorData} = require('../error');
-const {STATUS_CODE: {UNAUTHORIZED}, TOKEN_TYPE: {ACCESS_TOKEN}} = require('../constant');
+const {tokenChecker} = require('../../helpers');
+const {CustomError, CustomErrorData} = require('../../error');
+const {STATUS_CODE: {UNAUTHORIZED}, TOKEN_TYPE: {REFRESH_TOKEN}} = require('../../constant');
 
 module.exports = async (req, res, next) => {
 
-    try {
         const token = req.get('Authorization');
 
         if (!token) {
@@ -15,13 +14,9 @@ module.exports = async (req, res, next) => {
             ));
         }
 
-        await tokenChecker(token, ACCESS_TOKEN);
+        await tokenChecker(token, REFRESH_TOKEN)
 
         next()
 
-    } catch (e) {
-        next(new CustomError(e.status, e.message, e.code))
-
-    }
 
 };

@@ -1,3 +1,6 @@
+const Joi = require('joi');
+
+const {authValidator} = require('../../validator');
 const {CustomError, CustomErrorData} = require('../../error');
 const {STATUS_CODE} = require('../../constant');
 const {tokenCreator, passwordChecker} = require('../../helpers');
@@ -9,6 +12,8 @@ module.exports = async (req, res, next) => {
 
         const author = await authorService.getAuthorByParams({email});
 
+        const {id: author_id, password: passwordFromDB} = author;
+
         if (!author) {
             throw new CustomError(
                 STATUS_CODE.BAD_REQUEST,
@@ -16,8 +21,15 @@ module.exports = async (req, res, next) => {
                 CustomErrorData.BAD_REQUEST_USER_NOT_PRESENT.code
             )
         }
-        const {id: author_id, password: passwordFromDB} = author;
 
+        const {error} = Joi.validate({email,password},authValidator);
+
+        if (error){
+            throw new CustomError(
+                STATUS_CODE.FORBIDDEN,
+                error.details[0].message
+            )
+        }
         await passwordChecker(passwordFromDB, password);
 
         const tokenPair = tokenCreator();
@@ -32,4 +44,4 @@ module.exports = async (req, res, next) => {
     } catch (e) {
         next(new CustomError(e.status, e.message, e.code))
     }
-}
+};

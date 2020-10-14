@@ -6,6 +6,7 @@ module.exports = params => {
 
     return AuthorModel.findOne({
         where: params,
+        attributes: ['id', 'name', 'surname'],
         raw: true
     })
 };

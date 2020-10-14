@@ -5,7 +5,7 @@ const cors = require('cors');
 const {STATUS_CODE: {SERVER_ERROR}} = require('./constant');
 const {PORT} = require('./config');
 require('./dataBase').getInstance().setModels();
-const {AuthorRouter,AuthRouter} = require('./router');
+const {AuthorRouter,AuthRouter,ChatRouter} = require('./router');
 
 const app = express();
 
@@ -15,6 +15,7 @@ app.use(cors());
 
 app.use('/authors', AuthorRouter);
 app.use('/auth', AuthRouter);
+app.use('/chats', ChatRouter);
 
 
 app.use((err, req, res, next) => {

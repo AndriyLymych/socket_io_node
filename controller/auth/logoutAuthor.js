@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
             ));
         }
 
-        await oauthService.deleteTokenPairFromDb(access_token);
+        await oauthService.deleteTokenPairFromDb({access_token});
 
         res.end()
 

@@ -4,18 +4,26 @@ module.exports = {
     //+
     BAD_REQUEST_USER_NOT_PRESENT: {
         message: 'User is not present',
-        code: 4003
+        code: 4001
     },
 
     //+
     BAD_REQUEST_USER_ALREADY_PRESENT: {
         message: 'User is already present',
-        code: 4006
+        code: 4002
     },
 
+    BAD_REQUEST_CHAT_IS_ALREADY_PRESENT: {
+        message: 'Chat is already present',
+        code: 4003
+    },
+    BAD_REQUEST_CHAT_IS_NOT_PRESENT: {
+        message: 'Chat is not present',
+        code: 4004
+    },
     BAD_REQUEST_WRONG_PASSWORD: {
         message: 'Wrong password',
-        code: 40014
+        code: 4005
     },
 
 
@@ -46,7 +54,7 @@ module.exports = {
 
     FORBIDDEN_WRONG_ACTION_TOKEN: {
         message: 'Wrong action token',
-        code: 4034
+        code: 4031
     },
 
 };
