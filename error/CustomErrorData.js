@@ -25,6 +25,10 @@ module.exports = {
         message: 'Wrong password',
         code: 4005
     },
+    BAD_REQUEST_MSG_IS_NOT_PRESENT: {
+        message: 'Msg is not present',
+        code: 4006
+    },
 
 
     //401 error code

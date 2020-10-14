@@ -1,28 +1,23 @@
 const Joi = require('joi');
 
 const {STATUS_CODE} = require('../../constant');
-const {CustomError,CustomErrorData} = require('../../error');
-const {messageService, chatService} = require('../../service');
+const {CustomError, CustomErrorData} = require('../../error');
+const {messageService} = require('../../service');
 const {createMsgValidator} = require('../../validator');
 
 module.exports = async (req, res, next) => {
     try {
-        const msg = req.body;
-        const {text} = msg;
+        const {id} = req.params;
         const {author_id} = req.user;
-        const {chat_id} = req.params;
-        const id = chat_id;
+        const {text} = req.body;
 
-        msg.chat_id = chat_id;
-        msg.author_id = author_id;
+        const msg = await messageService.getMsgById(id);
 
-        const chat = await chatService.getChatById(id);
-
-        if (!chat){
+        if (!msg) {
             throw new CustomError(
                 STATUS_CODE.BAD_REQUEST,
-                CustomErrorData.BAD_REQUEST_CHAT_IS_NOT_PRESENT.message,
-                CustomErrorData.BAD_REQUEST_CHAT_IS_NOT_PRESENT.code
+                CustomErrorData.BAD_REQUEST_MSG_IS_NOT_PRESENT.message,
+                CustomErrorData.BAD_REQUEST_MSG_IS_NOT_PRESENT.code
             )
         }
 
@@ -34,7 +29,8 @@ module.exports = async (req, res, next) => {
                 error.details[0].message
             )
         }
-        await messageService.postMsg(msg);
+
+        await messageService.editMsg(text, id, author_id);
 
         res.status(STATUS_CODE.CREATED).end()
 
